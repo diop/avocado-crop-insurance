@@ -1,0 +1,23 @@
+{
+  "name": "avocado-crop-insurance",
+  "version": "1.0.0",
+  "description": "Blockchain backed Crop Insurance",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diop/avocado-crop-insurance.git"
+  },
+  "keywords": [
+    "smart",
+    "contracts"
+  ],
+  "author": "Manasa Yedire, Wanlin Zheng, Jason Emberley, Fodé Diop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diop/avocado-crop-insurance/issues"
+  },
+  "homepage": "https://github.com/diop/avocado-crop-insurance#readme"
+}
