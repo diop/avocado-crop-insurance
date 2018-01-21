@@ -28,12 +28,11 @@ library SafeMath {
   }
 }
 
-
 contract AvocadoPolicy {
   using SafeMath for uint256;
   address owner;
   uint256 ownerAccount;
-  mapping (address => uint256) policyAccount;
+  mapping (address => uint256) policyHolder;
 
   modifier ownerOnly {
     require(msg.sender == owner);
@@ -54,8 +53,8 @@ contract AvocadoPolicy {
   }
 
   function disbursePayments(uint256 paymentAmount, address farmer) public payable {
-    uint256 totalPayouts = policyAccount[farmer] + paymentAmount;
-    policyAccount[farmer] = totalPayouts;
+    uint256 totalPayouts = policyHolder[farmer] + paymentAmount;
+    policyHolder[farmer] = totalPayouts;
     msg.sender.transfer(paymentAmount);
   }
 
