@@ -1,5 +1,9 @@
 const moment = require('moment')
-const { getActiveFarmersEthAdd, getFarmerByAddress } = require('../database/queries')
+const {
+  getActiveFarmersEthAdd,
+  getFarmerByAddress,
+  deactivateFarmer
+} = require('../database/queries')
 const { getWeatherInfo } = require('../api')
 const { getProb } = require('../model')
 const { disbursePayment } = require('../contract')
@@ -41,6 +45,7 @@ const checkForCropFailure = () => {
               calculatePayment(address.ethaddress)
                 .then(paymentAmount => {
                   disbursePayment(address.ethaddress, paymentAmount)
+                  deactivateFarmer(address)
                 })
                 .catch(console.error)
             })

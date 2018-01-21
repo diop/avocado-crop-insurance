@@ -8,5 +8,7 @@ CREATE TABLE farmers (
   technique TEXT,
   size TEXT,
   experience TEXT,
+  email TEXT,
+  paid BOOLEAN DEFAULT FALSE,
   creationdate DATE DEFAULT CURRENT_DATE
 );
