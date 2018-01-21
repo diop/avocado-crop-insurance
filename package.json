@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/diop/avocado-crop-insurance/issues"
   },
-  "homepage": "https://github.com/diop/avocado-crop-insurance#readme"
+  "homepage": "https://github.com/diop/avocado-crop-insurance#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
 }
