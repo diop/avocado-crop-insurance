@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<form action="/index" method="post">
+
+  <label for="Region">Region</label><br />
+  <input type="text" name="region" placeholder="Region" required/><br />
+
+  <label for="name">Name</label><br /><br />
+  <input type="text" name="name" placeholder="Name" required/><br />
+
+  <label for="phone-number">Phone Number</label><br />
+  <input type="text" name="phone-number" placeholder="Phone Number" required/><br />
+
+  <label for="eth-address">Ethereum Address</label><br />
+  <input type="text" name="eth-address" placeholder="Ethereum Address" required/><br />
+
+  <label for="premium">Premium</label><br />
+  <input type="text" name="premium" placeholder="Insurance Premium" required/><br />
+
+  <button class="btn btn-primary" type="button" name="submit">Submit</button>
+
+</form>
+
+<% include ../partials/footer %>
