@@ -3,7 +3,7 @@ const app = express()
 
 const router = express.Router()
 
-app.get('/', (res, req, next) => {
+router.get('/', (req, res, next) => {
   res.render('index')
 })
 
