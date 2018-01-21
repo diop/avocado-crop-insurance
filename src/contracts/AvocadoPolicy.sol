@@ -15,9 +15,9 @@ contract AvocadoPolicy {
   }
 
   struct PolicyData {
-    uint premiumAmount;
-    uint endDateTimestamp;
-    uint nextPremiumTimestamp;
+    uint startDate;
+    uint endDate;
+    uint nextPremium;
     uint maxPayout;
     string region;
     bool claimed;
