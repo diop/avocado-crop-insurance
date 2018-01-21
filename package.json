@@ -2,7 +2,7 @@
   "name": "avocado-crop-insurance",
   "version": "1.0.0",
   "description": "Blockchain backed Crop Insurance",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js "
   },
