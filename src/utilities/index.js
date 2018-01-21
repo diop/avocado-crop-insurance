@@ -37,7 +37,7 @@ const checkForCropFailure = () => {
             addresses.forEach(address => {
               const paymentAmount = calculatePayment(address)
 
-              contract.disbursePayment(paymentAmount, address)
+              contract.disbursePayment(address, paymentAmount)
             })
           })
           .catch(console.error)
