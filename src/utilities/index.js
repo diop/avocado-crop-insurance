@@ -1,28 +1,31 @@
 const moment = require('moment')
 const { getActiveFarmersEthAdd, getFarmerByAddress } = require('../database/queries')
 const { getWeatherInfo } = require('../api')
-const contract = require('../contract')
 const { getProb } = require('../model')
+const { disbursePayment } = require('../contract')
 
 const maxSafeAvocadoTemp = 311
 
 const calculatePayment = (address) => {
-  const farmerInfo = getFarmerByAddress(address)
-  const premium = farmerInfo.premium
+  return getFarmerByAddress(address)
+    .then(farmerInfo => {
+      const premium = farmerInfo.premium
 
-  const probSuccess = getProb({
-    week: moment().week(),
-    minTemp: 58,
-    rainfall: 76,
-    sunlightExposure: 43.22,
-    elevation: 49.33,
-    experience: farmerInfo.experience,
-    size_of_farm: farmerInfo.size,
-    technique: farmerInfo.technique,
-    disease: 0
-  })
+      const probSuccess = getProb({
+        week: moment().week(),
+        minTemp: 58,
+        rainfall: 76,
+        sunlightExposure: 43.22,
+        elevation: 49.33,
+        experience: farmerInfo.experience,
+        size_of_farm: farmerInfo.size,
+        technique: farmerInfo.technique === 'hand' ? 0 : 1,
+        disease: 0
+      })
 
-  return probSuccess * premium / (1 - probSuccess)
+      return probSuccess * premium / (1 - probSuccess)
+    })
+    .catch(console.error)
 }
 
 const checkForCropFailure = () => {
@@ -35,9 +38,11 @@ const checkForCropFailure = () => {
         getActiveFarmersEthAdd()
           .then(addresses => {
             addresses.forEach(address => {
-              const paymentAmount = calculatePayment(address)
-
-              contract.disbursePayment(address, paymentAmount)
+              calculatePayment(address.ethaddress)
+                .then(paymentAmount => {
+                  disbursePayment(address.ethaddress, paymentAmount)
+                })
+                .catch(console.error)
             })
           })
           .catch(console.error)

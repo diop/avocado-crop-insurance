@@ -8,6 +8,7 @@ const app = express()
 
 const port = process.env.PORT || 3000
 
+// daily at the 23rd hour
 schedule.scheduleJob('23 * * *', checkForCropFailure)
 
 app.set('view engine', 'ejs')
