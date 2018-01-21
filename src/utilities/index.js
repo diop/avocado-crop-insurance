@@ -32,13 +32,13 @@ const calculatePayment = (address) => {
     .catch(console.error)
 }
 
-const checkForCropFailure = () => {
+const checkForCropFailure = (force) => {
 
-  getWeatherInfo()
+  return getWeatherInfo()
     .then(weatherInfo => {
       const maxTemp = weatherInfo.main.temp_max
 
-      if (maxTemp >= maxSafeAvocadoTemp) {
+      if (maxTemp >= maxSafeAvocadoTemp || force) {
         getActiveFarmersEthAdd()
           .then(addresses => {
             addresses.forEach(address => {
@@ -50,7 +50,12 @@ const checkForCropFailure = () => {
                 .catch(console.error)
             })
           })
+          .then(() => {
+            return `Payments dispersed`
+          })
           .catch(console.error)
+      } else {
+        return `Max temp today was ${maxTemp}K which is less than the maximum safe temperature for acocados, 311K (100°F)`
       }
     })
     .catch(console.error)
