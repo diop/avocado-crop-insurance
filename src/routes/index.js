@@ -4,7 +4,7 @@ const app = express()
 const router = express.Router()
 
 app.get('/', (res, req, next) => {
-  response.render('index')
+  res.render('index')
 })
 
-export module.exports = router
+module.exports = router
