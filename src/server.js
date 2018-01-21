@@ -2,12 +2,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const schedule = require('node-schedule')
 const index = require('./routes/index')
+const { checkForCropFailure } = require('./utilities')
 
 const app = express()
 
 const port = process.env.PORT || 3000
 
-// schedule.scheduleJob('23 * * *', callApi())
+schedule.scheduleJob('23 * * *', checkForCropFailure)
 
 app.set('view engine', 'ejs')
 app.set('views', 'src/views')

@@ -24,11 +24,11 @@ RETURNING *`, farmerData
   )
 }
 
-const getActiveFarmersEth = () => {
+const getActiveFarmersEthAdd = () => {
   const cur = new Date()
   const lastYear = `${cur.getUTCFullYear()}-${cur.getUTCMonth()}-${cur.getUTCDate()}`
 
-  return db.query('SELECT * FROM farmers WHERE creationdate > $1', lastYear)
+  return db.query('SELECT ethaddress FROM farmers WHERE creationdate > $1', lastYear)
 }
 
-module.exports = { addFarmer, getActiveFarmersEth }
+module.exports = { addFarmer, getActiveFarmersEthAdd }
