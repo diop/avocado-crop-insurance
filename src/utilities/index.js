@@ -39,23 +39,25 @@ const checkForCropFailure = (force) => {
       const maxTemp = weatherInfo.main.temp_max
 
       if (maxTemp >= maxSafeAvocadoTemp || force) {
-        getActiveFarmersEthAdd()
+        return getActiveFarmersEthAdd()
           .then(addresses => {
             addresses.forEach(address => {
               calculatePayment(address.ethaddress)
                 .then(paymentAmount => {
                   disbursePayment(address.ethaddress, paymentAmount)
-                  deactivateFarmer(address)
+                  deactivateFarmer(address.ethaddress)
+                    .catch(console.error)
                 })
                 .catch(console.error)
             })
           })
+          .catch(console.error)
           .then(() => {
             return `Payments dispersed`
           })
           .catch(console.error)
       } else {
-        return `Max temp today was ${maxTemp}K which is less than the maximum safe temperature for acocados, 311K (100°F)`
+        return `Max temp today was ${Math.round(9/5*(maxTemp-273)+32)}°F which is less than 100°F, the maximum safe temperature for acocados`
       }
     })
     .catch(console.error)
