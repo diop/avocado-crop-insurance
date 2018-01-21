@@ -7,7 +7,8 @@
     "start": "node src/server.js",
     "start:dev": "nodemon src/server.js",
     "db:create": "createdb farmers",
-    "db:drop": "cropdb farmers"
+    "db:drop": "dropdb farmers",
+    "db:schema": "psql -d farmers < src/database/schema.sql"
   },
   "repository": {
     "type": "git",
