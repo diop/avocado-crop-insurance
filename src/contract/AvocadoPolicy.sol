@@ -52,7 +52,7 @@ contract AvocadoPolicy {
     bool claimed;
   }
 
-  function disbursePayments(uint256 paymentAmount, address farmer) public payable {
+  function disbursePayment(uint256 paymentAmount, address farmer) public payable {
     uint256 totalPayouts = policyHolder[farmer] + paymentAmount;
     policyHolder[farmer] = totalPayouts;
     msg.sender.transfer(paymentAmount);
