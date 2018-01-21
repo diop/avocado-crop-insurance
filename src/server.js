@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = 'body-parser'
+const index = './routes/index'
 
 const port = process.env.PORT || 3000
 
@@ -11,7 +12,7 @@ app.use(express.static('src/public'))
 
 // app.use(bodyParser.urlencoded({ extended: false }))
 
-// app.use('/', index)
+app.use('/', index)
 
 app.listen(port, () => {
   console.log('Listening for parties on port:', port)
