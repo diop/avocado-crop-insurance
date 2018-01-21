@@ -8,8 +8,5 @@ CREATE TABLE farmers (
   technique TEXT,
   size TEXT,
   experience TEXT,
-  region TEXT,
-  elevation TEXT,
-  longitude TEXT,
-  latitude TEXT
+  creationdate DATE DEFAULT CURRENT_DATE
 );

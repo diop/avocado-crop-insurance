@@ -9,11 +9,7 @@ const addFarmer = (farmerData) => {
   premium,
   technique,
   size,
-  experience,
-  region,
-  elevation,
-  longitude,
-  latitude
+  experience
 )
 VALUES (
   $[name],
@@ -22,14 +18,17 @@ VALUES (
   $[premium],
   $[technique],
   $[size],
-  $[experience],
-  $[region],
-  $[elevation],
-  $[longitude],
-  $[latitude]
+  $[experience]
 )
 RETURNING *`, farmerData
   )
 }
 
-module.exports = { addFarmer }
+const getActiveFarmersEth = () => {
+  const cur = new Date()
+  const lastYear = `${cur.getUTCFullYear()}-${cur.getUTCMonth()}-${cur.getUTCDate()}`
+
+  return db.query('SELECT * FROM farmers WHERE creationdate > $1', lastYear)
+}
+
+module.exports = { addFarmer, getActiveFarmersEth }
