@@ -32,7 +32,7 @@ const getActiveFarmersEthAdd = () => {
 }
 
 const getFarmerByAddress = (address) => {
-  return db.query('SELECT * FROM farmers WHERE ethaddress=$1;', address)
+  return db.one('SELECT * FROM farmers WHERE ethaddress=$1;', address)
 }
 
 module.exports = { addFarmer, getActiveFarmersEthAdd, getFarmerByAddress }

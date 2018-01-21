@@ -1,9 +1,18 @@
-const { getActiveFarmersEthAdd } = require('../database/queries')
+const { getActiveFarmersEthAdd, getFarmerByAddress } = require('../database/queries')
 const { getWeatherInfo } = require('../api')
 const contract = require('../contract')
-// const { calculatePayment } = require('../models')
+const { getProb } = require('../model')
 
 const maxSafeAvocadoTemp = 311
+
+const calculatePayment = (address) => {
+  const farmerInfo = getFarmerByAddress(address)
+  const premium = farmerInfo.premium
+
+  const probSuccess = getProb(/*...*/)
+
+  return probSuccess * premium / (1 - probSuccess)
+}
 
 const checkForCropFailure = () => {
 
@@ -15,7 +24,7 @@ const checkForCropFailure = () => {
         getActiveFarmersEthAdd()
           .then(addresses => {
             addresses.forEach(address => {
-              // const paymentAmount = calculatePayment(address)
+              const paymentAmount = calculatePayment(address)
 
               // contract.disbursePayment(paymentAmount, address)
             })
