@@ -33,7 +33,6 @@ contract AvocadoPolicy {
   address owner;
   uint256 ownerAccount;
   uint256 totalPot;
-  mapping (address => uint256) policyHolders;
 
   event Deposit(address _from, uint _amount);
 
@@ -44,15 +43,6 @@ contract AvocadoPolicy {
 
   function AvocadoPolicy() public {
     owner = msg.sender;
-  }
-
-  struct PolicyData {
-    uint startDate;
-    uint endDate;
-    uint nextPremium;
-    uint maxPayout;
-    string region;
-    bool claimed;
   }
 
   function depositFunds(uint256 _funds) public payable{
