@@ -32,7 +32,10 @@ contract AvocadoPolicy {
   using SafeMath for uint256;
   address owner;
   uint256 ownerAccount;
-  mapping (address => uint256) policyHolder;
+  uint256 totalPot;
+  mapping (address => uint256) policyHolders;
+
+  event Deposit(address _from, uint _amount);
 
   modifier ownerOnly {
     require(msg.sender == owner);
@@ -52,15 +55,23 @@ contract AvocadoPolicy {
     bool claimed;
   }
 
-  function disbursePayment(uint256 paymentAmount, address farmer) public payable {
-    uint256 totalPayouts = policyHolder[farmer] + paymentAmount;
-    policyHolder[farmer] = totalPayouts;
-    msg.sender.transfer(paymentAmount);
+  function depositFunds(uint256 _funds) public payable{
+    totalPot += _funds;
+    Deposit(msg.sender, msg.value);
   }
 
-  function ownerWithdraw(uint256 amount) public payable ownerOnly {
-     require(ownerAccount >= amount);
-     msg.sender.transfer(amount);
+  function disbursePayment(address _recipient, uint256 _amount ) public payable {
+    uint256 _payouts = policyHolder[_recipient] + _amount;
+    msg.sender.transfer(_amount);
+  }
+
+  function getBalance() public returns (uint) {
+    return this.balance;
+  }
+
+  function ownerWithdraw(uint256 _amount) public payable ownerOnly {
+     require(ownerAccount >= _amount);
+     msg.sender.transfer(_amount);
   }
 
   function selfdestruct(address owner) ownerOnly {
