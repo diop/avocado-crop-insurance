@@ -1,4 +1,5 @@
 const { getActiveFarmersEthAdd } = require('../database/queries')
+const { getWeatherInfo } = require('../api')
 
 const checkForCropFailure = () => {
   // call api

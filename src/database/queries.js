@@ -26,7 +26,7 @@ RETURNING *`, farmerData
 
 const getActiveFarmersEthAdd = () => {
   const cur = new Date()
-  const lastYear = `${cur.getUTCFullYear()}-${cur.getUTCMonth()}-${cur.getUTCDate()}`
+  const lastYear = `${cur.getUTCFullYear()}-${cur.getUTCMonth() + 1}-${cur.getUTCDate()}`
 
   return db.query('SELECT ethaddress FROM farmers WHERE creationdate > $1', lastYear)
 }
