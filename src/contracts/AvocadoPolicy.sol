@@ -11,29 +11,32 @@ contract AvocadoPolicy {
   }
 
   function AvocadoPolicy() public {
-        owner = msg.sender;
-    }
+    owner = msg.sender;
+  }
 
   struct PolicyData {
     uint premiumAmount;
     uint endDateTimestamp;
-    uint nextPaymentTimestamp;
-    uint monthlyPayment;
+    uint nextPremiumTimestamp;
     uint maxPayout;
-    address farmer;
     string region;
     bool claimed;
-    bool confirmed;
+  }
+
+  function disbursePayments(uint256 paymentAmount, address farmer) public payable {
+    uint256 totalPayouts = policyAccount[farmer] + paymentAmount;
+    policyAccount[farmer] = totalPayouts;
+    msg.sender.transfer(paymentAmount);
   }
 
   function ownerWithdraw(uint256 amount) public payable ownerOnly {
-       require(ownerAccount >= amount);
-       msg.sender.transfer(amount);
-   }
+     require(ownerAccount >= amount);
+     msg.sender.transfer(amount);
+  }
 
   function selfdestruct(address owner) ownerOnly {
-        selfdestruct(owner);
-    }
+    selfdestruct(owner);
+  }
 
   function () public payable {}
 }
