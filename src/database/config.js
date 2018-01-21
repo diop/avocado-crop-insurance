@@ -7,4 +7,4 @@ const connection = {
 
 const db = pgp(process.env.DATABASE_URL || connection)
 
-module.exports.db = db
+module.exports = db
