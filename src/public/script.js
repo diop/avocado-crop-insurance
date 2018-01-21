@@ -95,12 +95,12 @@ var Client = web3.eth.contract(abi)
 var client = Client.at(contractAddress)
 
 function putMoneyInContract() {
-  var premium = getElementById('premium')
+  var premium = document.getElementById('premium').value
 
   client.depositFunds(premium, {
     gas: 30000,
     from: web3.eth.accounts[0],
-    value: web3.toWei(0.01, 'ether')
+    value: web3.toWei(premium, 'ether')
   }, function(err, transactionHash) {
     console.log('transactionHash:', transactionHash)
   })
