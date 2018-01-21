@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res) => {
-
+  console.log('req.body:', req.body)
 })
 
 module.exports = router
