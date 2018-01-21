@@ -6,7 +6,7 @@ if (typeof web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider)
 } else {
   // web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/CTNrMRz6lyyxOxddWG7y'))
-  web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+  web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'))
 }
 
 const contractAddress = '0xa5f5665cb7cddce66c6227eada48b96e75303769'
