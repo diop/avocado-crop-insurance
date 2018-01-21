@@ -20,7 +20,7 @@ VALUES (
   $[size],
   $[experience]
 )
-RETURNING *`, farmerData
+RETURNING *;`, farmerData
   )
 }
 
@@ -28,7 +28,11 @@ const getActiveFarmersEthAdd = () => {
   const cur = new Date()
   const lastYear = `${cur.getUTCFullYear()}-${cur.getUTCMonth() + 1}-${cur.getUTCDate()}`
 
-  return db.query('SELECT ethaddress FROM farmers WHERE creationdate > $1', lastYear)
+  return db.query('SELECT ethaddress FROM farmers WHERE creationdate > $1;', lastYear)
 }
 
-module.exports = { addFarmer, getActiveFarmersEthAdd }
+const getFarmerByAddress = (address) => {
+  return db.query('SELECT * FROM farmers WHERE ethaddress=$1;', address)
+}
+
+module.exports = { addFarmer, getActiveFarmersEthAdd, getFarmerByAddress }

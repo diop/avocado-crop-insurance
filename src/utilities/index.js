@@ -1,7 +1,7 @@
 const { getActiveFarmersEthAdd } = require('../database/queries')
 const { getWeatherInfo } = require('../api')
 const contract = require('../contract')
-const { calculatePayment } = require('../models')
+// const { calculatePayment } = require('../models')
 
 const maxSafeAvocadoTemp = 311
 
@@ -15,9 +15,9 @@ const checkForCropFailure = () => {
         getActiveFarmersEthAdd()
           .then(addresses => {
             addresses.forEach(address => {
-              const paymentAmount = calculatePayment(address)
+              // const paymentAmount = calculatePayment(address)
 
-              contract.disbursePayment(paymentAmount, address)
+              // contract.disbursePayment(paymentAmount, address)
             })
           })
           .catch(console.error)
