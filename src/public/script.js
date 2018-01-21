@@ -98,7 +98,7 @@ function putMoneyInContract() {
   var premium = document.getElementById('premium').value
 
   client.depositFunds(premium, {
-    gas: 30000,
+    gas: 50000,
     from: web3.eth.accounts[0],
     value: web3.toWei(premium, 'ether')
   }, function(err, transactionHash) {
