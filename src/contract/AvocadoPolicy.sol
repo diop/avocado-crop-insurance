@@ -31,6 +31,7 @@ library SafeMath {
 contract AvocadoPolicy {
   using SafeMath for uint256;
   address owner;
+  address beneficiary;
   uint256 ownerAccount;
   uint256 totalPot;
 
@@ -50,9 +51,8 @@ contract AvocadoPolicy {
     Deposit(msg.sender, msg.value);
   }
 
-  function disbursePayment(address _recipient, uint256 _amount ) public payable {
-    uint256 _payouts = policyHolder[_recipient] + _amount;
-    msg.sender.transfer(_amount);
+  function disbursePayment(uint256 _amount ) public payable {
+    beneficiary.transfer(_amount);
   }
 
   function getBalance() public returns (uint) {
