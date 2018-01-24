@@ -6,3 +6,6 @@
 + [Manasa Yedire - Full Stack Web | Data Management](https://www.github.com/manasacsy)
 + [Jason Emberley - Full Stack Web | Ethereum Blockchain](https://www.github.com/jason00111)
 + [Fodé Diop - Full Stack Web | Ethereum Blockchain](https://www.github.com/diop)
+
+## Slide Show
++ [Slide Show pdf](https://github.com/diop/avocado-crop-insurance/blob/master/Team-Avocado-Toast.pdf)
